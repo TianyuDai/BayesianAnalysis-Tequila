@@ -2,6 +2,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
+sys.path.insert(1, '../general/')
+from plot_general import hist_1d_2d
 
 Y_model = np.loadtxt('../../data/dp_output/output')
 
@@ -11,6 +14,12 @@ pca = PCA(copy=True, whiten=True, svd_solver='full')
 # Keep only the first `npc` principal components
 pc_tf_data = pca.fit_transform(SS.fit_transform(Y_model)) [:,:Npc]
 np.savetxt('../../data/PCA_transformed_data', pc_tf_data)
+
+i, j = 0, 1
+X = pc_tf_data[:,i]
+Y = pc_tf_data[:,j]
+hist_1d_2d(X, Y, 'dp%d'%i, 'dp%d'%j)
+plt.savefig("../../plots/check_transformed_corr_%d%d"%(i, j))
 
 # The transformation matrix from PC to Physical space
 inverse_tf_matrix = pca.components_ * np.sqrt(pca.explained_variance_[:, np.newaxis]) * SS.scale_ 
