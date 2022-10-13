@@ -20,40 +20,44 @@ data_pp_x = data_pp.T[0]
 data_pp_val = data_pp.T[1]
 data_pp_err = np.sqrt(data_pp.T[2]**2+data_pp.T[3]**2)
 
-for dp in range(31): 
+# number of collisions for 40-50% centrality
+# n_coll = 124.6
+
+n_coll = 960.2
+n_coll_err = 96.1
+data_AA_x = data_AA.T[0]
+data_AA_val = data_AA.T[1] * pp_mb / n_coll
+data_AA_err = data_AA_val*np.sqrt((data_AA.T[2] * cross_section_mb)**2/(data_AA.T[1] * cross_section_mb)**2+(n_coll_err/n_coll)**2)
+
+data_AA_val_log = np.log(data_AA_val)
+tck = interpolate.splrep(data_AA_x, data_AA_val_log, s=0)
+data_AA_interp_log = interpolate.splev(data_pp_x[11:], tck, der=0)
+data_AA_interp = np.exp(data_AA_interp_log)
+
+data_AA_err_log = np.log(data_AA_err)
+tck = interpolate.splrep(data_AA_x, data_AA_err_log, s=0)
+data_AA_err_interp_log = interpolate.splev(data_pp_x[11:], tck, der=0)
+data_AA_err_interp = np.exp(data_AA_err_interp_log)
+
+data_RAA_x = data_pp_x[11:]
+data_RAA_val = data_AA_interp / data_pp_val[11:]
+data_RAA_err = data_RAA_val * np.sqrt((data_pp_err[11:]/data_pp_val[11:])**2+(data_AA_err_interp/data_AA_interp)**2)
+
+dp_list = [x for x in range(43)]
+dp_list.append(60)
+dp_list.append(72)
+dp_list.append(73)
+dp_list.append(88)
+
+for dp in dp_list: 
     AA = np.loadtxt("AA200_dp%d_pion_cs.txt" %dp)
 
     AA_x = AA.T[0]
     AA_val = AA.T[1] / 2
     AA_err = AA.T[2] / 2
 
-    x = np.linspace(0.25, 50., 100)
-
     RAA_val = AA_val / pp_val
     RAA_err = RAA_val * np.sqrt((AA_err/AA_val)**2+(pp_err/pp_val)**2)
-
-    # number of collisions for 40-50% centrality
-    # n_coll = 124.6
-
-    n_coll = 960.2
-    n_coll_err = 96.1
-    data_AA_x = data_AA.T[0]
-    data_AA_val = data_AA.T[1] * pp_mb / n_coll
-    data_AA_err = data_AA_val*np.sqrt((data_AA.T[2] * cross_section_mb)**2/(data_AA.T[1] * cross_section_mb)**2+(n_coll_err/n_coll)**2)
-
-    data_AA_val_log = np.log(data_AA_val)
-    tck = interpolate.splrep(data_AA_x, data_AA_val_log, s=0)
-    data_AA_interp_log = interpolate.splev(data_pp_x[11:], tck, der=0)
-    data_AA_interp = np.exp(data_AA_interp_log)
-
-    data_AA_err_log = np.log(data_AA_err)
-    tck = interpolate.splrep(data_AA_x, data_AA_err_log, s=0)
-    data_AA_err_interp_log = interpolate.splev(data_pp_x[11:], tck, der=0)
-    data_AA_err_interp = np.exp(data_AA_err_interp_log)
-
-    data_RAA_x = data_pp_x[11:]
-    data_RAA_val = data_AA_interp / data_pp_val[11:]
-    data_RAA_err = data_RAA_val * np.sqrt((data_pp_err[11:]/data_pp_val[11:])**2+(data_AA_err_interp/data_AA_interp)**2)
 
     RAA = np.concatenate((np.array([pp_x]).T, np.array([RAA_val]).T, np.array([RAA_err]).T), axis=1)
     np.savetxt('RAA_dp%d'%dp, RAA)

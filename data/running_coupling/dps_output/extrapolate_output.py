@@ -24,26 +24,26 @@ data_AA_x = data_AA.T[0]
 data_AA_val = data_AA.T[1] * pp_mb / n_coll
 data_AA_err = data_AA_val*np.sqrt((data_AA.T[2] * cross_section_mb)**2/(data_AA.T[1] * cross_section_mb)**2+(n_coll_err/n_coll)**2)
 
-data_AA_val_log = np.log(data_AA_val)
-tck = interpolate.splrep(data_AA_x, data_AA_val_log, s=0)
-data_AA_interp_log = interpolate.splev(data_pp_x[11:], tck, der=0)
-data_AA_interp = np.exp(data_AA_interp_log)
+data_pp_val_log = np.log(data_pp_val)
+tck = interpolate.splrep(data_pp_x, data_pp_val_log, s=0)
+data_pp_interp_log = interpolate.splev(data_AA_x, tck, der=0)
+data_pp_interp = np.exp(data_pp_interp_log)
 
-data_AA_err_log = np.log(data_AA_err)
-tck = interpolate.splrep(data_AA_x, data_AA_err_log, s=0)
-data_AA_err_interp_log = interpolate.splev(data_pp_x[11:], tck, der=0)
-data_AA_err_interp = np.exp(data_AA_err_interp_log)
+data_pp_err_log = np.log(data_pp_err)
+tck = interpolate.splrep(data_pp_x, data_pp_err_log, s=0)
+data_pp_err_interp_log = interpolate.splev(data_AA_x, tck, der=0)
+data_pp_err_interp = np.exp(data_pp_err_interp_log)
 
-data_RAA_x = data_pp_x[11:]
-data_RAA_val = data_AA_interp / data_pp_val[11:]
-data_RAA_err = data_RAA_val * np.sqrt((data_pp_err[11:]/data_pp_val[11:])**2+(data_AA_err_interp/data_AA_interp)**2)
+data_RAA_x = data_AA_x
+data_RAA_val = data_AA_val / data_pp_interp
+data_RAA_err = data_RAA_val * np.sqrt((data_pp_err_interp/data_pp_interp)**2+(data_AA_err/data_AA_val)**2)
 
-data = np.array([data_RAA_x[5:], data_RAA_val[5:], data_RAA_err[5:]]).T
+# data = np.array([data_RAA_x[5:], data_RAA_val[5:], data_RAA_err[5:]]).T
 
 
 # n_dp = [6, 7, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 # n_dp = range(1, 25, 1)
-n_dp = [i for i in range(42)]
+n_dp = [i for i in range(43)]
 n_dp.append(60)
 n_dp.append(72)
 n_dp.append(73)
@@ -54,7 +54,8 @@ plt.figure()
 
 for i in range(1): 
     # AA = np.loadtxt("AA200_dp%d_pion_cs.txt"%i)
-    AA = np.loadtxt("AA200_pion_cs_base.txt")
+    AA = np.loadtxt("AA200_pion_cs_true.txt")
+    AA_2 = np.loadtxt("AA200_pion_true.txt")
     AA_x = AA.T[0]
     AA_val = AA.T[1] / 2
     AA_err = AA.T[2] / 2
@@ -67,18 +68,24 @@ for i in range(1):
     tck = interpolate.splrep(AA_x, RAA_err, s=0)
     cal_RAA_err = interpolate.splev(data_pp_x[16:], tck, der=0)
 
-    output = np.array([data_RAA_x[5:], cal_RAA_val, cal_RAA_err]).T
-    
-    np.savetxt('RAA_base', output)
-    # np.savetxt('true_RAA_noInit',cal_RAA_val)
-    # np.savetxt('true_RAA_err_noInit', cal_RAA_err)
-    plt.errorbar(AA_x, RAA_val, yerr=RAA_err, color='cornflowerblue', alpha=0.5)
-    # plt.errorbar(data_pp_x[16:], cal_RAA_val, yerr=cal_RAA_err, color='cornflowerblue')
-    plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, color='red', label='data')
-    plt.errorbar(data_pp_x[16:], cal_RAA_val, yerr=cal_RAA_err, color='black', label='validation')
+    # AA2_val = AA_2.T[1] / 2
+    # AA2_err = AA_2.T[2] / 2
 
+    # cal_RAA_val = AA2_val / pp_val
+    # cal_RAA_err = cal_RAA_val * np.sqrt((AA2_err/AA2_val)**2+(pp_err/pp_val)**2)
+
+
+    output = np.array([data_pp_x[16:], cal_RAA_val, cal_RAA_err]).T
+    
+    np.savetxt('RAA_true', output)
+    # plt.errorbar(AA_x, RAA_val, yerr=RAA_err, color='cornflowerblue', alpha=0.5)
+    # plt.errorbar(data_pp_x[16:], cal_RAA_val, yerr=cal_RAA_err, color='cornflowerblue')
+    # plt.errorbar(data_RAA_x[5:], data_RAA_val[5:], yerr=data_RAA_err[5:], color='red', label='data')
+    # plt.errorbar(data_RAA_x[5:], cal_RAA_val[5:], yerr=cal_RAA_err[5:], color='black', label='validation')
+"""
 plt.legend()
 plt.xlim(8, 20)
 plt.ylabel('$R_{AA}$')
 plt.xlabel('$p_T (GeV)$')
 plt.savefig('RAA_validation.pdf')
+"""
