@@ -52,10 +52,10 @@ n_dp.append(88)
 
 plt.figure()
 
-for i in range(1): 
-    # AA = np.loadtxt("AA200_dp%d_pion_cs.txt"%i)
-    AA = np.loadtxt("AA200_pion_cs_true.txt")
-    AA_2 = np.loadtxt("AA200_pion_true.txt")
+for i in n_dp: 
+    AA = np.loadtxt("AA200_dp%d_pion_cs.txt"%i)
+    # AA = np.loadtxt("AA200_pion_cs_less_loss.txt")
+    # AA_2 = np.loadtxt("AA200_pion_true.txt")
     AA_x = AA.T[0]
     AA_val = AA.T[1] / 2
     AA_err = AA.T[2] / 2
@@ -77,7 +77,8 @@ for i in range(1):
 
     output = np.array([data_pp_x[16:], cal_RAA_val, cal_RAA_err]).T
     
-    np.savetxt('RAA_true', output)
+    # np.savetxt('RAA_true', output)
+    np.savetxt('RAA_dp%d' %i, output)
     # plt.errorbar(AA_x, RAA_val, yerr=RAA_err, color='cornflowerblue', alpha=0.5)
     # plt.errorbar(data_pp_x[16:], cal_RAA_val, yerr=cal_RAA_err, color='cornflowerblue')
     # plt.errorbar(data_RAA_x[5:], data_RAA_val[5:], yerr=data_RAA_err[5:], color='red', label='data')

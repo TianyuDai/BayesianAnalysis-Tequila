@@ -13,6 +13,8 @@ dps_list.append(72)
 dps_list.append(73)
 dps_list.append(88)
 
+dps_list = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
+
 with open("design_points_main_AuAu-200.dat") as file: 
     for line in file: 
         line = line.rstrip()
@@ -32,4 +34,4 @@ with open("design_points_main_AuAu-200.dat") as file:
 
 lhd_sampling = np.concatenate((np.array([beta_1]).T, np.array([beta_2]).T, np.array([beta_3]).T, np.array([Tstar]).T, np.array([Q0]).T, np.array([ghard]).T), axis=1)
 
-np.savetxt('lhd_sampling_5d.txt', lhd_sampling)
+np.savetxt('lhd_sampling_6d_small_beta.txt', lhd_sampling)
