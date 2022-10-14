@@ -4,11 +4,15 @@ n_dp = [_ for _ in range(43)]
 n_dp.append(60)
 n_dp.append(72)
 n_dp.append(73)
+n_dp.append(85)
 n_dp.append(88)
+n_dp.append(92)
+n_dp.append(128)
+n_dp.append(134)
 # n_dp.append(60)
 # n_dp = [6, 7, 9, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21]
 # n_dp = [6, 17, 18, 19]
-n_dp = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
+# n_dp = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
 output = []
 
 for i_dp in n_dp: 
@@ -19,4 +23,4 @@ for i_dp in n_dp:
     # i_output = np.concatenate((i_output_1, i_output_2), axis=0)
     output.append(i_output_1)
 
-np.savetxt('../../data/running_coupling/output_small_beta_err', output)
+np.savetxt('../../data/running_coupling/output_err', output)

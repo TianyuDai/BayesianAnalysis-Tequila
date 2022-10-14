@@ -28,14 +28,18 @@ small_Q0 = [1, 2, 4, 7, 10, 11, 12, 13, 16, 17, 18, 23, 24, 25, 26, 29]
 small_ghard = [1, 3, 4, 6, 8, 10, 11, 13, 16, 17, 19, 21, 22, 25, 26, 27]
 large_Tstar = [1, 4, 6, 9, 10, 12, 13, 14, 16, 18, 22, 24]
 # dp_list = range(30, 43, 1)
-dp_list = [6, 60, 72, 73, 88]
+# dp_list = [6, 60, 72, 73, 85, 88, 92, 128, 134]
 dp_list = [x for x in range(43)]
 dp_list.append(60)
 dp_list.append(72)
 dp_list.append(73)
+dp_list.append(85)
 dp_list.append(88)
+dp_list.append(92)
+dp_list.append(128)
+dp_list.append(134)
 
-dp_list = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
+# dp_list = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
 
 for dp in dp_list: 
     AA = np.loadtxt("AA200_dp%d_pion_cs.txt" %dp)
@@ -77,6 +81,7 @@ plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', c
 
 AA_upper = np.loadtxt("AA200_pion_cs_less_loss.txt")
 AA_lower = np.loadtxt("AA200_pion_cs_more_loss.txt")
+AA_true = np.loadtxt("AA200_pion_cs_true.txt")
 
 # AA_x = AA.T[0]
 AA_upper_val = AA_upper.T[1] / 2
@@ -91,8 +96,15 @@ AA_lower_err = AA_lower.T[2] / 2
 RAA_lower_val = AA_lower_val / pp_val
 RAA_lower_err = RAA_lower_val * np.sqrt((AA_lower_err/AA_lower_val)**2+(pp_err/pp_val)**2)
 
-plt.errorbar(pp_x, RAA_upper_val, yerr=RAA_upper_err, color='black', label='upper limit')
-# plt.errorbar(pp_x, RAA_lower_val, yerr=RAA_lower_err, color='black')
+AA_true_val = AA_true.T[1] / 2
+AA_true_err = AA_true.T[2] / 2
+
+RAA_true_val = AA_true_val / pp_val
+RAA_true_err = RAA_true_val * np.sqrt((AA_true_err/AA_true_val)**2+(pp_err/pp_val)**2)
+
+# plt.errorbar(pp_x, RAA_upper_val, yerr=RAA_upper_err, label='$\\beta = -0.8$', alpha=0.5)
+# plt.errorbar(pp_x, RAA_true_val, yerr=RAA_true_err, label='$\\beta = 0$', alpha=0.5)
+# plt.errorbar(pp_x, RAA_lower_val, yerr=RAA_lower_err, label='$\\beta = 2$', alpha=0.5)
 
 # plt.plot(x, [1 for i in x], color='black')
 plt.legend()
@@ -103,4 +115,4 @@ plt.ylim(0, 1.)
 plt.xlim(8, 20)
 plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_0-10central_RAA_pion_dps_beta1.2.pdf')
+plt.savefig('Tequila_0-10central_RAA_pion_dps.pdf')
