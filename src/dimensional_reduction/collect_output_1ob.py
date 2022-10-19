@@ -1,14 +1,14 @@
 import numpy as np
 
-n_dp = [_ for _ in range(43)]
-n_dp.append(60)
-n_dp.append(72)
-n_dp.append(73)
-n_dp.append(85)
-n_dp.append(88)
-n_dp.append(92)
-n_dp.append(128)
-n_dp.append(134)
+n_dp = [_ for _ in range(18)]
+n_dp.append(21)
+# n_dp.append(72)
+# n_dp.append(73)
+# n_dp.append(85)
+# n_dp.append(88)
+# n_dp.append(92)
+# n_dp.append(128)
+# n_dp.append(134)
 # n_dp.append(60)
 # n_dp = [6, 7, 9, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21]
 # n_dp = [6, 17, 18, 19]
@@ -16,7 +16,7 @@ n_dp.append(134)
 output = []
 
 for i_dp in n_dp: 
-    data_1 = np.loadtxt("../../data/running_coupling/dps_output/RAA_dp%d" %i_dp)
+    data_1 = np.loadtxt("../../data/running_coupling/centrality0-10/dps/RAA_dp%d" %i_dp)
     # data_2 = np.loadtxt("../../data/dp_output/centrality40-50/RAA_dp%d" %i_dp)
     i_output_1 = data_1.T[2]
     # i_output_2 = data_2.T[1]

@@ -7,16 +7,16 @@ Tstar = []
 Q0 = []
 ghard = []
 
-dps_list = [_ for _ in range(43)]
-dps_list.append(60)
-dps_list.append(72)
-dps_list.append(73)
-dps_list.append(85)
-dps_list.append(88)
-dps_list.append(92)
-dps_list.append(128)
-dps_list.append(134)
-print(len(dps_list))
+dps_list = [_ for _ in range(18)]
+dps_list.append(21)
+# dps_list.append(72)
+# dps_list.append(73)
+# dps_list.append(85)
+# dps_list.append(88)
+# dps_list.append(92)
+# dps_list.append(128)
+# dps_list.append(134)
+# print(len(dps_list))
 
 # dps_list = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
 
