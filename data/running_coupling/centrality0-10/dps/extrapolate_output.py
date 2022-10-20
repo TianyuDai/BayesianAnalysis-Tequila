@@ -38,13 +38,15 @@ data_RAA_x = data_AA_x
 data_RAA_val = data_AA_val / data_pp_interp
 data_RAA_err = data_RAA_val * np.sqrt((data_pp_err_interp/data_pp_interp)**2+(data_AA_err/data_AA_val)**2)
 
+output = np.array([data_RAA_x[6:], data_RAA_val[6:], data_RAA_err[6:]]).T
+np.savetxt('RAA_data', output)
 # data = np.array([data_RAA_x[5:], data_RAA_val[5:], data_RAA_err[5:]]).T
 
 
 # n_dp = [6, 7, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 # n_dp = range(1, 25, 1)
-n_dp = [i for i in range(18)]
-n_dp.append(21)
+n_dp = [i for i in range(16)]
+# n_dp.append(21)
 # n_dp.append(72)
 # n_dp.append(73)
 # n_dp.append(85)

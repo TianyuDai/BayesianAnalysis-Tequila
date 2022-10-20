@@ -64,9 +64,9 @@ dp_list.append(128)
 dp_list.append(134)
 
 # dp_list = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
-dp_list = [x for x in range(18)]
-dp_list.append(21)
-dp_list = [15]
+# dp_list = [x for x in range(5, 10, 1)]
+dp_list = range(16)
+# dp_list = [16, 17, 21]
 
 for dp in dp_list: 
     AA = np.loadtxt("AA200_dp%d_pion.txt" %dp)
@@ -78,14 +78,14 @@ for dp in dp_list:
     RAA_val = AA_val / pp_val
     RAA_err = RAA_val * np.sqrt((AA_err/AA_val)**2+(pp_err/pp_val)**2)
 
-    # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
+    plt.errorbar(pp_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
     # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, label='dp%d'%dp)
 
-plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', color='red', alpha=0.3)
+plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', color='red')
 
-AA_upper = np.loadtxt("AA200_pion_smallQ0.txt")
-AA_lower = np.loadtxt("AA200_pion_largeBeta.txt")
-AA_true = np.loadtxt("AA200_pion_smallGhard.txt")
+AA_upper = np.loadtxt("AA200_pion_largeTstar.txt")
+AA_lower = np.loadtxt("AA200_pion_lower.txt")
+AA_true = np.loadtxt("AA200_pion_true.txt")
 
 # AA_x = AA.T[0]
 
@@ -107,17 +107,16 @@ AA_true_err = AA_true.T[2] / 2
 RAA_true_val = AA_true_val / pp_val
 RAA_true_err = RAA_true_val * np.sqrt((AA_true_err/AA_true_val)**2+(pp_err/pp_val)**2)
 
-plt.errorbar(pp_x, RAA_upper_val, yerr=RAA_upper_err, label='$\\beta=-0.8, T^*=0.5, Q_0 = 1, \\alpha_s^{inel, hard}=0.1$')
-plt.errorbar(pp_x, RAA_true_val, yerr=RAA_true_err, label='$\\beta=0, T^*=0.24, Q_0 = 2, \\alpha_s^{inel, hard}=0.3$')
-plt.errorbar(pp_x, RAA_lower_val, yerr=RAA_lower_err, label='$\\beta=1, T^*=0.16, Q_0 = 3, \\alpha_s^{inel, hard}=0.4$', color='black')
+plt.errorbar(pp_x, RAA_upper_val, yerr=RAA_upper_err, color='black')
+plt.errorbar(pp_x, RAA_true_val, yerr=RAA_true_err, label='valid')
+plt.errorbar(pp_x, RAA_lower_val, yerr=RAA_lower_err, color='black')
 
 # plt.plot(x, [1 for i in x], color='black')
-# plt.legend()
 plt.xlabel('$p_T$ (GeV/c)')
 plt.ylabel('$R_{AA}$')
 plt.legend()
-plt.ylim(0, 1.)
+plt.ylim(0, 0.6)
 plt.xlim(8, 20)
 plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_0-10central_RAA_pion_small.pdf')
+plt.savefig('Tequila_0-10central_RAA_pion_samples.pdf')
