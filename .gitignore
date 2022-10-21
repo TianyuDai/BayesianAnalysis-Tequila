@@ -1,5 +1,6 @@
 .ipynb_checkpoints/
 data/running_coupling/MCMC_samples
+data/running_coupling/MCMC_test_samples
 data/running_coupling/small_beta/MCMC_samples
 data/QM2022/MCMC_samples
 

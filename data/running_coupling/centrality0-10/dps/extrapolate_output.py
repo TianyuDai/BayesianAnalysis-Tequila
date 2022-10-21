@@ -45,7 +45,7 @@ np.savetxt('RAA_data', output)
 
 # n_dp = [6, 7, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 # n_dp = range(1, 25, 1)
-n_dp = [i for i in range(16)]
+n_dp = [i for i in range(21)]
 # n_dp.append(21)
 # n_dp.append(72)
 # n_dp.append(73)
