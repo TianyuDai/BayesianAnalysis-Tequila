@@ -53,19 +53,9 @@ small_ghard = [1, 3, 4, 6, 8, 10, 11, 13, 16, 17, 19, 21, 22, 25, 26, 27]
 large_Tstar = [1, 4, 6, 9, 10, 12, 13, 14, 16, 18, 22, 24]
 # dp_list = range(30, 43, 1)
 # dp_list = [6, 60, 72, 73, 85, 88, 92, 128, 134]
-dp_list = [x for x in range(43)]
-dp_list.append(60)
-dp_list.append(72)
-dp_list.append(73)
-dp_list.append(85)
-dp_list.append(88)
-dp_list.append(92)
-dp_list.append(128)
-dp_list.append(134)
-
 # dp_list = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
 # dp_list = [x for x in range(5, 10, 1)]
-dp_list = range(18, 20)
+dp_list = range(20)
 # dp_list = [16, 17, 21]
 
 for dp in dp_list: 
@@ -78,8 +68,8 @@ for dp in dp_list:
     RAA_val = AA_val / pp_val
     RAA_err = RAA_val * np.sqrt((AA_err/AA_val)**2+(pp_err/pp_val)**2)
 
-    # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
-    plt.errorbar(pp_x, RAA_val, yerr=RAA_err, label='dp%d'%dp)
+    plt.errorbar(pp_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
+    # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, label='dp%d'%dp)
 
 plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', color='red')
 
@@ -119,4 +109,4 @@ plt.ylim(0, 0.6)
 plt.xlim(8, 20)
 plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_0-10central_RAA_pion_dp18-19.pdf')
+plt.savefig('Tequila_0-10central_RAA_pion_range.pdf')
