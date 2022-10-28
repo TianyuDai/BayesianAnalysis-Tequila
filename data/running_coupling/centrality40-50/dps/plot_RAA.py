@@ -79,7 +79,7 @@ for dp in dp_list:
     RAA_val = AA_val / pp_val
     RAA_err = RAA_val * np.sqrt((AA_err/AA_val)**2+(pp_err/pp_val)**2)
 
-    plt.errorbar(pp_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
+    plt.errorbar(AA_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
     # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, label='dp%d'%dp)
 
 plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', color='red')
@@ -108,16 +108,16 @@ AA_true_err = AA_true.T[2] / 2
 RAA_true_val = AA_true_val / pp_val
 RAA_true_err = RAA_true_val * np.sqrt((AA_true_err/AA_true_val)**2+(pp_err/pp_val)**2)
 
-plt.errorbar(pp_x, RAA_upper_val, yerr=RAA_upper_err, color='black', alpha=0.5)
-plt.errorbar(pp_x, RAA_true_val, yerr=RAA_true_err, label='valid')
-plt.errorbar(pp_x, RAA_lower_val, yerr=RAA_lower_err, color='black', alpha=0.5)
+plt.errorbar(AA_x, RAA_upper_val, yerr=RAA_upper_err, color='black', alpha=0.5)
+plt.errorbar(AA_x, RAA_true_val, yerr=RAA_true_err, label='valid')
+plt.errorbar(AA_x, RAA_lower_val, yerr=RAA_lower_err, color='black', alpha=0.5)
 
 x = np.linspace(5., 20., 100)
 plt.plot(x, [1 for i in x], color='black')
 plt.xlabel('$p_T$ (GeV/c)')
 plt.ylabel('$R_{AA}$')
 plt.legend()
-plt.ylim(0, 1.8)
+plt.ylim(0, 1.5)
 plt.xlim(8, 20)
 plt.title('Tequile, Au+Au 200GeV, 40-50% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
