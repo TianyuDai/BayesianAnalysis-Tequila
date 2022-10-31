@@ -84,9 +84,9 @@ for dp in dp_list:
 
 plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', color='red')
 
-AA_upper = np.loadtxt("AA200_pion_upper.txt")
+AA_upper = np.loadtxt("AA200_pion_mediumQ0.txt")
 AA_lower = np.loadtxt("AA200_pion_lower.txt")
-AA_true = np.loadtxt("AA200_pion_true.txt")
+AA_true = np.loadtxt("AA200_pion_val.txt")
 
 # AA_x = AA.T[0]
 
@@ -121,4 +121,4 @@ plt.ylim(0, 1.5)
 plt.xlim(8, 20)
 plt.title('Tequile, Au+Au 200GeV, 40-50% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_40-50central_RAA_pion_range.pdf')
+plt.savefig('Tequila_40-50central_RAA_pion_range_test.pdf')

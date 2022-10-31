@@ -73,9 +73,9 @@ for dp in dp_list:
 
 plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', color='red')
 
-AA_upper = np.loadtxt("AA200_pion_small_t.txt")
-AA_lower = np.loadtxt("AA200_pion_small_dt.txt")
+AA_upper = np.loadtxt("AA200_pion_upper.txt")
 AA_true = np.loadtxt("AA200_pion_val.txt")
+AA_lower = np.loadtxt("AA200_pion_lower.txt")
 
 # AA_x = AA.T[0]
 
@@ -97,16 +97,16 @@ AA_true_err = AA_true.T[2] / 2
 RAA_true_val = AA_true_val / pp_val
 RAA_true_err = RAA_true_val * np.sqrt((AA_true_err/AA_true_val)**2+(pp_err/pp_val)**2)
 
-plt.errorbar(data_AA_x, RAA_upper_val, yerr=RAA_upper_err, label='t=20, dt=0.2')
-plt.errorbar(data_AA_x, RAA_true_val, yerr=RAA_true_err, label='t=250, dt=0.2')
-plt.errorbar(data_AA_x, RAA_lower_val, yerr=RAA_lower_err, label='t=20, dt=0.05')
+plt.errorbar(data_AA_x, RAA_upper_val, yerr=RAA_upper_err, label='$dt=0.05, t=50$')
+plt.errorbar(data_AA_x, RAA_true_val, yerr=RAA_true_err, label='$dt=0.2, t=250$')
+plt.errorbar(data_AA_x, RAA_lower_val, yerr=RAA_lower_err, label='$dt=0.2, t=50$')
 
 # plt.plot(x, [1 for i in x], color='black')
 plt.xlabel('$p_T$ (GeV/c)')
 plt.ylabel('$R_{AA}$')
 plt.legend()
-# plt.ylim(0, 0.6)
-plt.xlim(8, 20)
+plt.ylim(0, 1.)
+plt.xlim(8.25, 19)
 plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_0-10central_RAA_pion_t_compare.pdf')
+plt.savefig('Tequila_0-10central_RAA_pion_range_new.pdf')
