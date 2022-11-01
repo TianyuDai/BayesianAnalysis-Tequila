@@ -68,17 +68,17 @@ for dp in dp_list:
     RAA_val = AA_val / pp_val
     RAA_err = RAA_val * np.sqrt((AA_err/AA_val)**2+(pp_err/pp_val)**2)
 
-    # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
+    plt.errorbar(pp_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
     # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, label='dp%d'%dp)
 
 plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', color='red')
 
-AA_upper = np.loadtxt("AA200_pion_qperp.txt")
-AA_true = np.loadtxt("AA200_pion_small_tau0.txt")
-AA_lower = np.loadtxt("AA200_pion_medium_tau0.txt")
+# AA_upper = np.loadtxt("AA200_pion_tau0_0.2.txt")
+AA_true = np.loadtxt("AA200_pion_val.txt")
+# AA_lower = np.loadtxt("AA200_pion_tau0_0.8.txt")
 
 # AA_x = AA.T[0]
-
+"""
 AA_upper_val = AA_upper.T[1] / 2
 AA_upper_err = AA_upper.T[2] / 2
 
@@ -90,16 +90,20 @@ AA_lower_err = AA_lower.T[2] / 2
 
 RAA_lower_val = AA_lower_val / pp_val
 RAA_lower_err = RAA_lower_val * np.sqrt((AA_lower_err/AA_lower_val)**2+(pp_err/pp_val)**2)
-
+"""
 AA_true_val = AA_true.T[1] / 2
 AA_true_err = AA_true.T[2] / 2
 
 RAA_true_val = AA_true_val / pp_val
 RAA_true_err = RAA_true_val * np.sqrt((AA_true_err/AA_true_val)**2+(pp_err/pp_val)**2)
 
-plt.errorbar(data_AA_x, RAA_upper_val, yerr=RAA_upper_err, label='t=20, dt=0.2')
-plt.errorbar(data_AA_x, RAA_true_val, yerr=RAA_true_err, label='t=250, dt=0.2')
-plt.errorbar(data_AA_x, RAA_lower_val, yerr=RAA_lower_err, label='t=20, dt=0.05')
+# plt.errorbar(data_AA_x, RAA_upper_val, yerr=RAA_upper_err, label='$\\tau_0 = 0.2$ fm/c')
+plt.errorbar(data_AA_x, RAA_true_val, yerr=RAA_true_err, label='valid')
+# plt.errorbar(data_AA_x, RAA_lower_val, yerr=RAA_lower_err, label='$\\tau_0 = 0.8$ fm/c')
+
+# plt.fill_between(data_AA_x, RAA_upper_val-RAA_upper_err, RAA_upper_val+RAA_upper_err, label='$\\tau_0 = 0.2$ fm/c', color='tomato', alpha=0.5)
+# plt.fill_between(data_AA_x, RAA_true_val-RAA_true_err, RAA_true_val+RAA_true_err, label='$\\tau_0 = 0.5$ fm/c', color='cornflowerblue', alpha=0.5)
+# plt.fill_between(data_AA_x, RAA_lower_val+RAA_lower_err, RAA_lower_val-RAA_lower_err, label='$\\tau_0 = 0.8$ fm/c', color='mediumseagreen', alpha=0.5)
 
 # plt.plot(x, [1 for i in x], color='black')
 plt.xlabel('$p_T$ (GeV/c)')
@@ -109,4 +113,4 @@ plt.ylim(0, 1.)
 plt.xlim(8.25, 19)
 plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_0-10central_RAA_pion_range_new.pdf')
+plt.savefig('Tequila_0-10central_RAA_pion_dps.pdf')

@@ -20,7 +20,7 @@ dps_list = [_ for _ in range(20)]
 
 # dps_list = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
 
-with open("design_points_main_AuAu-200.dat") as file: 
+with open("design_points_main_AuAu-200_logQ0.dat") as file: 
     for line in file: 
         line = line.rstrip()
         if "idx" in line: 
@@ -32,11 +32,10 @@ with open("design_points_main_AuAu-200.dat") as file:
 
         beta_1.append(float(dp_point[1]))
         beta_2.append(float(dp_point[2]))
-        beta_3.append(float(dp_point[3]))
-        Tstar.append(float(dp_point[4]))
-        Q0.append(float(dp_point[5]))
-        ghard.append(float(dp_point[6]))
+        Tstar.append(float(dp_point[3]))
+        Q0.append(float(dp_point[4]))
+        ghard.append(float(dp_point[5]))
 
-lhd_sampling = np.concatenate((np.array([beta_1]).T, np.array([beta_2]).T, np.array([beta_3]).T, np.array([Tstar]).T, np.array([Q0]).T, np.array([ghard]).T), axis=1)
+lhd_sampling = np.concatenate((np.array([beta_1]).T, np.array([beta_2]).T, np.array([Tstar]).T, np.array([Q0]).T, np.array([ghard]).T), axis=1)
 
-np.savetxt('lhd_sampling_6d.txt', lhd_sampling)
+np.savetxt('lhd_sampling_5d.txt', lhd_sampling)
