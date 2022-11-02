@@ -7,7 +7,7 @@ Tstar = []
 Q0 = []
 ghard = []
 
-dps_list = [_ for _ in range(20)]
+dps_list = [_ for _ in range(40)]
 # dps_list.append(21)
 # dps_list.append(72)
 # dps_list.append(73)
