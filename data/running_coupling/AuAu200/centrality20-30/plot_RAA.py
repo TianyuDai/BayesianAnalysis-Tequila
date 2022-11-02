@@ -8,7 +8,7 @@ from scipy import interpolate
 
 # pp = np.loadtxt("pp200_hadrons_cross_section_pT.txt")
 pp = np.loadtxt("pp200_pion.txt")
-data_AA = np.loadtxt("data_AuAu200_pions_centrality010.txt")
+data_AA = np.loadtxt("data_AuAu200_pions_centrality20-30.txt")
 data_pp = np.loadtxt("pp200_PHENIX_data_hadrons_cross_section.txt")
 
 cross_section_mb = 28.49
@@ -25,8 +25,8 @@ data_pp_err = np.sqrt(data_pp.T[2]**2+data_pp.T[3]**2)
 # number of collisions for 40-50% centrality
 # n_coll = 124.6
 
-n_coll = 960.2
-n_coll_err = 96.1
+n_coll = 377.6
+n_coll_err = 36.4
 data_AA_x = data_AA.T[0]
 data_AA_val = data_AA.T[1] * pp_mb / n_coll
 data_AA_err = data_AA_val*np.sqrt((data_AA.T[2] * cross_section_mb)**2/(data_AA.T[1] * cross_section_mb)**2+(n_coll_err/n_coll)**2)
@@ -46,17 +46,8 @@ data_RAA_val = data_AA_val / data_pp_interp
 data_RAA_err = data_RAA_val * np.sqrt((data_pp_err_interp/data_pp_interp)**2+(data_AA_err/data_AA_val)**2)
 
 plt.figure()
-
-small_beta = [2, 4, 5, 6, 10, 14, 17, 19, 22, 23, 24]
-small_Q0 = [1, 2, 4, 7, 10, 11, 12, 13, 16, 17, 18, 23, 24, 25, 26, 29]
-small_ghard = [1, 3, 4, 6, 8, 10, 11, 13, 16, 17, 19, 21, 22, 25, 26, 27]
-large_Tstar = [1, 4, 6, 9, 10, 12, 13, 14, 16, 18, 22, 24]
-# dp_list = range(30, 43, 1)
-# dp_list = [6, 60, 72, 73, 85, 88, 92, 128, 134]
-# dp_list = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
-# dp_list = [x for x in range(5, 10, 1)]
+"""
 dp_list = range(30, 40)
-# dp_list = [16, 17, 21]
 
 for dp in dp_list: 
     AA = np.loadtxt("AA200_dp%d_pion.txt" %dp)
@@ -71,11 +62,11 @@ for dp in dp_list:
     # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
     # plt.fill_between(pp_x, RAA_val-RAA_err, RAA_val+RAA_err, alpha=0.2, color='cornflowerblue')
     plt.errorbar(pp_x, RAA_val, yerr=RAA_err, label='dp%d'%dp)
-
+"""
 plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', color='red')
 
 # AA_upper = np.loadtxt("AA200_pion_tau0_0.2.txt")
-AA_true = np.loadtxt("AA200_pion_val.txt")
+AA_true = np.loadtxt("AA200_centrality20-30_pion_val.txt")
 # AA_lower = np.loadtxt("AA200_pion_tau0_0.8.txt")
 
 # AA_x = AA.T[0]
@@ -112,6 +103,6 @@ plt.ylabel('$R_{AA}$')
 plt.legend()
 plt.ylim(0, 1.)
 plt.xlim(8.25, 19)
-plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
+plt.title('Tequile, Au+Au 200GeV, 20-30% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_0-10central_RAA_pion_dp30-40.pdf')
+plt.savefig('Tequila_20-30central_RAA_pion_val.pdf')

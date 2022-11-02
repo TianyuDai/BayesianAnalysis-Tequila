@@ -28,3 +28,21 @@ for i_dp in n_dp:
 
 np.savetxt('../../data/running_coupling/output_1obs', output)
 np.savetxt('../../data/running_coupling/output_err_1obs', output_err)
+
+data = np.loadtxt("../../data/running_coupling/AuAu200/centrality0-10/dps/RAA_data")
+output = data.T[1]
+# output = np.concatenate((output_1, output_2), axis=0)
+np.savetxt('../../data/running_coupling/data_exp_1obs', output.T)
+
+output_err = data.T[2]
+# output_err = np.concatenate((output_err_1, output_err_2), axis=0)
+np.savetxt('../../data/running_coupling/data_exp_err_1obs', output_err.T)
+
+data = np.loadtxt("../../data/running_coupling/AuAu200/centrality0-10/dps/RAA_dp0")
+output = data.T[1]
+# output = np.concatenate((output_1, output_2), axis=0)
+np.savetxt('../../data/running_coupling/data_val_1obs', output.T)
+
+output_err = data.T[2]
+# output_err = np.concatenate((output_err_1, output_err_2), axis=0)
+np.savetxt('../../data/running_coupling/data_val_err_1obs', output_err.T)

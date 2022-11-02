@@ -45,7 +45,7 @@ np.savetxt('RAA_data', output)
 
 # n_dp = [6, 7, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 # n_dp = range(1, 25, 1)
-n_dp = [i for i in range(20)]
+n_dp = [i for i in range(40)]
 # n_dp.append(21)
 # n_dp.append(72)
 # n_dp.append(73)
@@ -59,8 +59,8 @@ n_dp = [i for i in range(20)]
 plt.figure()
 
 for i in n_dp: 
-    # AA = np.loadtxt("AA200_dp%d_pion.txt"%i)
-    AA = np.loadtxt("AA200_pion_val.txt")
+    AA = np.loadtxt("AA200_dp%d_pion.txt"%i)
+    # AA = np.loadtxt("AA200_pion_val.txt")
     # AA_2 = np.loadtxt("AA200_pion_true.txt")
     AA_x = AA.T[0]
     AA_val = AA.T[1] / 2
@@ -83,8 +83,8 @@ for i in n_dp:
 
     output = np.array([AA_x[6:], RAA_val[6:], RAA_err[6:]]).T
     
-    np.savetxt('RAA_true', output)
-    # np.savetxt('RAA_dp%d' %i, output)
+    # np.savetxt('RAA_true', output)
+    np.savetxt('RAA_dp%d' %i, output)
     # plt.errorbar(AA_x, RAA_val, yerr=RAA_err, color='cornflowerblue', alpha=0.5, label='pre')
     # plt.errorbar(AA_x, RAA_val_2, yerr=RAA_err_2, color='tomato', alpha=0.5, label='new')
     # plt.errorbar(data_pp_x[16:], cal_RAA_val, yerr=cal_RAA_err, color='cornflowerblue')
