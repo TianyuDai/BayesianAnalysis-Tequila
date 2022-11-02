@@ -7,8 +7,8 @@ output = []
 output_err = []
 
 for i_dp in n_dp: 
-    data_1 = np.loadtxt("../../data/running_coupling/centrality0-10/dps/RAA_dp%d" %i_dp)
-    data_2 = np.loadtxt("../../data/running_coupling/centrality40-50/dps/RAA_dp%d" %i_dp)
+    data_1 = np.loadtxt("../../data/running_coupling/AuAu200/centrality0-10/dps/RAA_dp%d" %i_dp)
+    data_2 = np.loadtxt("../../data/running_coupling/PbPb2760/centrality0-5/dps/RAA_dp%d" %i_dp)
     i_output_1 = data_1.T[1]
     i_output_2 = data_2.T[1]
     i_output = np.concatenate((i_output_1, i_output_2), axis=0)
@@ -24,8 +24,8 @@ print("combine shape", np.array(output).shape, np.array(output_err).shape)
 np.savetxt('../../data/running_coupling/output_2obs', output)
 np.savetxt('../../data/running_coupling/output_err_2obs', output_err)
 
-data_1 = np.loadtxt("../../data/running_coupling/centrality0-10/dps/RAA_data")
-data_2 = np.loadtxt("../../data/running_coupling/centrality40-50/dps/RAA_data")
+data_1 = np.loadtxt("../../data/running_coupling/AuAu200/centrality0-10/dps/RAA_data")
+data_2 = np.loadtxt("../../data/running_coupling/PbPb2760/centrality0-5/dps/RAA_data")
 output_1 = data_1.T[1]
 output_2 = data_2.T[1]
 # print(output_1)
@@ -37,8 +37,8 @@ output_err_2 = data_2.T[2]
 output_err = np.concatenate((output_err_1, output_err_2), axis=0)
 np.savetxt('../../data/running_coupling/data_exp_err_2obs', output_err.T)
 
-data_1 = np.loadtxt("../../data/running_coupling/centrality0-10/dps/RAA_true")
-data_2 = np.loadtxt("../../data/running_coupling/centrality40-50/dps/RAA_true")
+data_1 = np.loadtxt("../../data/running_coupling/AuAu200/centrality0-10/dps/RAA_true")
+data_2 = np.loadtxt("../../data/running_coupling/PbPb2760/centrality0-5/dps/RAA_true")
 output_1 = data_1.T[1]
 output_2 = data_2.T[1]
 # print(output_1)
