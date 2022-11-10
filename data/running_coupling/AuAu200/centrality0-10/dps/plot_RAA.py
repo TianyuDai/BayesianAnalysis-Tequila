@@ -30,6 +30,7 @@ n_coll_err = 96.1
 data_AA_x = data_AA.T[0]
 data_AA_val = data_AA.T[1] * pp_mb / n_coll
 data_AA_err = data_AA_val*np.sqrt((data_AA.T[2] * cross_section_mb)**2/(data_AA.T[1] * cross_section_mb)**2+(n_coll_err/n_coll)**2)
+data_AA_xerr = [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 1., 1., 1., 1., 1.]
 
 data_pp_val_log = np.log(data_pp_val)
 tck = interpolate.splrep(data_pp_x, data_pp_val_log, s=0)
@@ -55,7 +56,7 @@ large_Tstar = [1, 4, 6, 9, 10, 12, 13, 14, 16, 18, 22, 24]
 # dp_list = [6, 60, 72, 73, 85, 88, 92, 128, 134]
 # dp_list = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
 # dp_list = [x for x in range(5, 10, 1)]
-dp_list = range(30, 40)
+dp_list = range(60)
 # dp_list = [16, 17, 21]
 
 for dp in dp_list: 
@@ -69,17 +70,18 @@ for dp in dp_list:
     RAA_err = RAA_val * np.sqrt((AA_err/AA_val)**2+(pp_err/pp_val)**2)
 
     # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
-    # plt.fill_between(pp_x, RAA_val-RAA_err, RAA_val+RAA_err, alpha=0.2, color='cornflowerblue')
-    plt.errorbar(pp_x, RAA_val, yerr=RAA_err, label='dp%d'%dp)
+    plt.fill_between(pp_x, RAA_val-RAA_err, RAA_val+RAA_err, alpha=0.2, color='cornflowerblue')
+    # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, label='dp%d'%dp)
 
-plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', color='red')
+plt.errorbar(data_RAA_x, data_RAA_val, xerr=data_AA_xerr, yerr=data_RAA_err, fmt='.', label='PHENIX 2013', color='red')
 
-# AA_upper = np.loadtxt("AA200_pion_tau0_0.2.txt")
-AA_true = np.loadtxt("AA200_pion_val.txt")
-# AA_lower = np.loadtxt("AA200_pion_tau0_0.8.txt")
+AA_lower1 = np.loadtxt("AA200_pion_val.txt")
+AA_upper = np.loadtxt("AA200_pion_tau0_0.2.txt")
+AA_true = np.loadtxt("AA200_pion_tau0_0.5.txt")
+AA_lower = np.loadtxt("AA200_pion_tau0_0.8.txt")
 
 # AA_x = AA.T[0]
-"""
+
 AA_upper_val = AA_upper.T[1] / 2
 AA_upper_err = AA_upper.T[2] / 2
 
@@ -91,7 +93,13 @@ AA_lower_err = AA_lower.T[2] / 2
 
 RAA_lower_val = AA_lower_val / pp_val
 RAA_lower_err = RAA_lower_val * np.sqrt((AA_lower_err/AA_lower_val)**2+(pp_err/pp_val)**2)
-"""
+
+AA_lower1_val = AA_lower1.T[1] / 2
+AA_lower1_err = AA_lower1.T[2] / 2
+
+RAA_lower1_val = AA_lower1_val / pp_val
+RAA_lower1_err = RAA_lower1_val * np.sqrt((AA_lower1_err/AA_lower1_val)**2+(pp_err/pp_val)**2)
+
 AA_true_val = AA_true.T[1] / 2
 AA_true_err = AA_true.T[2] / 2
 
@@ -99,8 +107,10 @@ RAA_true_val = AA_true_val / pp_val
 RAA_true_err = RAA_true_val * np.sqrt((AA_true_err/AA_true_val)**2+(pp_err/pp_val)**2)
 
 # plt.errorbar(data_AA_x, RAA_upper_val, yerr=RAA_upper_err, label='$\\tau_0 = 0.2$ fm/c')
-plt.errorbar(data_AA_x, RAA_true_val, yerr=RAA_true_err, label='valid')
+# plt.errorbar(data_AA_x, RAA_true_val, yerr=RAA_true_err, label='$\\tau_0 = 0.5$ fm/c')
 # plt.errorbar(data_AA_x, RAA_lower_val, yerr=RAA_lower_err, label='$\\tau_0 = 0.8$ fm/c')
+
+# plt.fill_between(data_AA_x, RAA_lower1_val+RAA_lower1_err, RAA_lower1_val-RAA_lower1_err, label='$\\tau_0 = 0.1$ fm/c', color='orange', alpha=0.5)
 
 # plt.fill_between(data_AA_x, RAA_upper_val-RAA_upper_err, RAA_upper_val+RAA_upper_err, label='$\\tau_0 = 0.2$ fm/c', color='tomato', alpha=0.5)
 # plt.fill_between(data_AA_x, RAA_true_val-RAA_true_err, RAA_true_val+RAA_true_err, label='$\\tau_0 = 0.5$ fm/c', color='cornflowerblue', alpha=0.5)
@@ -111,7 +121,7 @@ plt.xlabel('$p_T$ (GeV/c)')
 plt.ylabel('$R_{AA}$')
 plt.legend()
 plt.ylim(0, 1.)
-plt.xlim(8.25, 19)
-plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
+plt.xlim(8., 20)
+# plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_0-10central_RAA_pion_dp30-40.pdf')
+plt.savefig('Tequila_0-10central_RAA_pion_dps.pdf')

@@ -45,7 +45,7 @@ data_RAA_x = data_AA_x
 data_RAA_val = data_AA_val / data_pp_interp
 data_RAA_err = data_RAA_val * np.sqrt((data_pp_err_interp/data_pp_interp)**2+(data_AA_err/data_AA_val)**2)
 
-plt.figure()
+plt.figure(figsize=(6, 4))
 
 small_beta = [2, 4, 5, 6, 10, 14, 17, 19, 22, 23, 24]
 small_Q0 = [1, 2, 4, 7, 10, 11, 12, 13, 16, 17, 18, 23, 24, 25, 26, 29]
@@ -101,9 +101,9 @@ RAA_true_err = RAA_true_val * np.sqrt((AA_true_err/AA_true_val)**2+(pp_err/pp_va
 # plt.errorbar(data_AA_x, RAA_true_val, yerr=RAA_true_err, label='$\\tau_0 = 0.5$ fm/c')
 # plt.errorbar(data_AA_x, RAA_lower_val, yerr=RAA_lower_err, label='$\\tau_0 = 0.8$ fm/c')
 
-plt.fill_between(data_AA_x, RAA_upper_val-RAA_upper_err, RAA_upper_val+RAA_upper_err, label='$\\tau_0 = 0.2$ fm/c', color='tomato', alpha=0.5)
-plt.fill_between(data_AA_x, RAA_true_val-RAA_true_err, RAA_true_val+RAA_true_err, label='$\\tau_0 = 0.5$ fm/c', color='cornflowerblue', alpha=0.5)
-plt.fill_between(data_AA_x, RAA_lower_val+RAA_lower_err, RAA_lower_val-RAA_lower_err, label='$\\tau_0 = 0.8$ fm/c', color='mediumseagreen', alpha=0.5)
+plt.fill_between(data_AA_x, RAA_upper_val-RAA_upper_err, RAA_upper_val+RAA_upper_err, label='$\\tau_0 = 0.2$ fm/c', color='tomato', alpha=0.3)
+plt.fill_between(data_AA_x, RAA_true_val-RAA_true_err, RAA_true_val+RAA_true_err, label='$\\tau_0 = 0.5$ fm/c', color='cornflowerblue', alpha=0.3)
+plt.fill_between(data_AA_x, RAA_lower_val+RAA_lower_err, RAA_lower_val-RAA_lower_err, label='$\\tau_0 = 0.8$ fm/c', color='mediumseagreen', alpha=0.3)
 
 # plt.plot(x, [1 for i in x], color='black')
 plt.xlabel('$p_T$ (GeV/c)')
@@ -111,6 +111,6 @@ plt.ylabel('$R_{AA}$')
 plt.legend()
 plt.ylim(0, 1.)
 plt.xlim(8.25, 19)
-plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
+# plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
 plt.savefig('Tequila_0-10central_RAA_pion_tau0.pdf')

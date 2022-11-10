@@ -26,14 +26,13 @@ np.savetxt('RAA_data', output)
 # data = np.array([data_RAA_x[5:], data_RAA_val[5:], data_RAA_err[5:]]).T
 
 
-n_dp = [i for i in range(20)]
+n_dp = [i for i in range(60)]
 
 plt.figure()
 
 for dp in n_dp: 
-    # AA = np.loadtxt("AA200_dp%d_pion.txt"%i)
-    # AA = np.loadtxt("PbPb2760_dp%d_pion.txt" %dp)
-    AA = np.loadtxt("PbPb2760_pion_Q03.1.txt")
+    AA = np.loadtxt("PbPb2760_dp%d_pion.txt" %dp)
+    # AA = np.loadtxt("PbPb2760_pion_Q03.1.txt")
 
     AA_x = AA.T[0]
     AA_val = AA.T[1] / 2
@@ -45,5 +44,5 @@ for dp in n_dp:
 
     output = np.array([AA_x, RAA_val, RAA_err]).T
     
-    # np.savetxt('RAA_dp%d' %dp, output)
-    np.savetxt('RAA_val', output)
+    np.savetxt('RAA_dp%d' %dp, output)
+    # np.savetxt('RAA_val', output)

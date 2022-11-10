@@ -30,7 +30,7 @@ data_RAA_err = np.sqrt(data_RAA.T[4]**2+data_RAA.T[5]**2)
 plt.figure()
 
 
-dp_list = range(30)
+dp_list = range(60)
 
 for dp in dp_list:
  

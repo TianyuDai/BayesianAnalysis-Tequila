@@ -65,12 +65,12 @@ for dp in dp_list:
 """
 plt.errorbar(data_RAA_x, data_RAA_val, yerr=data_RAA_err, label='PHENIX 2013', color='red')
 
-# AA_upper = np.loadtxt("AA200_pion_tau0_0.2.txt")
-AA_true = np.loadtxt("AA200_centrality20-30_pion_val.txt")
-# AA_lower = np.loadtxt("AA200_pion_tau0_0.8.txt")
+AA_upper = np.loadtxt("AA200_pion_Q0_1.0.txt")
+AA_true = np.loadtxt("AA200_pion_Q0_1.2.txt")
+AA_lower = np.loadtxt("AA200_pion_Q0_2.0.txt")
 
 # AA_x = AA.T[0]
-"""
+
 AA_upper_val = AA_upper.T[1] / 2
 AA_upper_err = AA_upper.T[2] / 2
 
@@ -82,16 +82,16 @@ AA_lower_err = AA_lower.T[2] / 2
 
 RAA_lower_val = AA_lower_val / pp_val
 RAA_lower_err = RAA_lower_val * np.sqrt((AA_lower_err/AA_lower_val)**2+(pp_err/pp_val)**2)
-"""
+
 AA_true_val = AA_true.T[1] / 2
 AA_true_err = AA_true.T[2] / 2
 
 RAA_true_val = AA_true_val / pp_val
 RAA_true_err = RAA_true_val * np.sqrt((AA_true_err/AA_true_val)**2+(pp_err/pp_val)**2)
 
-# plt.errorbar(data_AA_x, RAA_upper_val, yerr=RAA_upper_err, label='$\\tau_0 = 0.2$ fm/c')
-plt.errorbar(data_AA_x, RAA_true_val, yerr=RAA_true_err, label='valid')
-# plt.errorbar(data_AA_x, RAA_lower_val, yerr=RAA_lower_err, label='$\\tau_0 = 0.8$ fm/c')
+plt.errorbar(data_AA_x, RAA_upper_val, yerr=RAA_upper_err, label='$Q_0 = 1.0$ GeV')
+plt.errorbar(data_AA_x, RAA_true_val, yerr=RAA_true_err, label='$Q_0 = 1.2$ GeV')
+plt.errorbar(data_AA_x, RAA_lower_val, yerr=RAA_lower_err, label='$Q_0 = 2.0$ GeV')
 
 # plt.fill_between(data_AA_x, RAA_upper_val-RAA_upper_err, RAA_upper_val+RAA_upper_err, label='$\\tau_0 = 0.2$ fm/c', color='tomato', alpha=0.5)
 # plt.fill_between(data_AA_x, RAA_true_val-RAA_true_err, RAA_true_val+RAA_true_err, label='$\\tau_0 = 0.5$ fm/c', color='cornflowerblue', alpha=0.5)
@@ -105,4 +105,4 @@ plt.ylim(0, 1.)
 plt.xlim(8.25, 19)
 plt.title('Tequile, Au+Au 200GeV, 20-30% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_20-30central_RAA_pion_val.pdf')
+plt.savefig('Tequila_20-30central_RAA_pion_Q0.pdf')
