@@ -8,7 +8,7 @@ from scipy import interpolate
 
 # pp = np.loadtxt("pp200_hadrons_cross_section_pT.txt")
 
-dp_list = range(60)
+dp_list = range(40)
 
 fig, axes = plt.subplots(2, 2, figsize=(8,8))
 fig.subplots_adjust(hspace=0, wspace=0)
@@ -19,13 +19,17 @@ label_list = ['PHENIX 2013', 'ATLAS 2015', 'PHENIX 2013', 'ATLAS 2015']
 for i, ax, data_name, label in zip(range(4), axes.flat, data_list, label_list): 
     for dp in dp_list: 
         if i == 0: 
-            AA = np.loadtxt("AuAu200/centrality0-10/dps/AA200_dp%d_pion.txt" %dp)
+            AA = np.loadtxt("new_param/AuAu200/centrality0-10/AA200_dp%d_pion.txt" %dp)
+            AA2 = np.loadtxt("new_param/AuAu200/centrality0-10/AA200_pion_val.txt")
         elif i == 2: 
-            AA = np.loadtxt("AuAu200/centrality20-30/dps/AA200_dp%d_pion.txt" %dp)
+            AA = np.loadtxt("new_param/AuAu200/centrality20-30/AA200_dp%d_pion.txt" %dp)
+            AA2 = np.loadtxt("new_param/AuAu200/centrality20-30/AA200_pion_val.txt")
         elif i == 1: 
-            AA = np.loadtxt("PbPb2760/centrality0-5/dps/PbPb2760_dp%d_pion.txt" %dp)
+            AA = np.loadtxt("new_param/PbPb2760/centrality0-5/PbPb2760_dp%d_pion.txt" %dp)
+            AA2 = np.loadtxt("new_param/PbPb2760/centrality0-5/PbPb2760_pion_val.txt")
         else: 
-            AA = np.loadtxt("PbPb2760/centrality30-40/dps/PbPb2760_dp%d_pion.txt" %dp)
+            AA = np.loadtxt("new_param/PbPb2760/centrality30-40/PbPb2760_dp%d_pion.txt" %dp)
+            AA2 = np.loadtxt("new_param/PbPb2760/centrality30-40/PbPb2760_pion_val.txt")
 
         if i == 0 or i == 2: 
             pp = np.loadtxt("pp200_pion.txt")
@@ -94,6 +98,15 @@ for i, ax, data_name, label in zip(range(4), axes.flat, data_list, label_list):
         RAA_err = RAA_val * np.sqrt((AA_err/AA_val)**2+(pp_err/pp_val)**2)
 
         ax.fill_between(AA_x, RAA_val-RAA_err, RAA_val+RAA_err, alpha=0.2, color='cornflowerblue')
+        
+        AA2_x = AA2.T[0]
+        AA2_val = AA2.T[1] / 2
+        AA2_err = AA2.T[2] / 2
+
+        RAA2_val = AA2_val / pp_val
+        RAA2_err = RAA2_val * np.sqrt((AA2_err/AA2_val)**2+(pp_err/pp_val)**2)
+
+        ax.fill_between(AA2_x, RAA2_val-RAA2_err, RAA2_val+RAA2_err, alpha=0.2, color='mediumseagreen')
 
     ax.errorbar(data_RAA_x, data_RAA_val, xerr=data_RAA_xerr, yerr=data_RAA_err, fmt='.', label=label, color='red')
     ax.set_ylim(0, 1.5)
@@ -115,4 +128,4 @@ for i, ax, data_name, label in zip(range(4), axes.flat, data_list, label_list):
 # plt.xlim(8., 20)
 # plt.title('Tequile, Au+Au 200GeV, 0-10% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_RAA_pion_dps.pdf')
+plt.savefig('Tequila_RAA_pion_dps_newParam.pdf')
