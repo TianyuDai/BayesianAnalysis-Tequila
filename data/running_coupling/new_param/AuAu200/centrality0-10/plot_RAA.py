@@ -56,7 +56,7 @@ large_Tstar = [1, 4, 6, 9, 10, 12, 13, 14, 16, 18, 22, 24]
 # dp_list = [6, 60, 72, 73, 85, 88, 92, 128, 134]
 # dp_list = [2, 5, 6, 10, 14, 17, 19, 22, 23, 24, 33, 37, 38, 60, 72, 73, 88]
 # dp_list = [x for x in range(5, 10, 1)]
-dp_list = range(60)
+dp_list = range(40)
 # dp_list = [16, 17, 21]
 
 for dp in dp_list: 

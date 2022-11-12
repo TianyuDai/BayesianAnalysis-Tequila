@@ -1,16 +1,16 @@
 import numpy as np
 
-n_dp = range(60)
+n_dp = range(40)
 # n_dp = [6, 7, 9, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21]
 # n_dp = [6, 17, 18, 19]
 output = []
 output_err = []
 
 for i_dp in n_dp: 
-    data_1 = np.loadtxt("../../data/running_coupling/AuAu200/centrality0-10/dps/RAA_dp%d" %i_dp)
-    data_3 = np.loadtxt("../../data/running_coupling/PbPb2760/centrality0-5/dps/RAA_dp%d" %i_dp)
-    data_2 = np.loadtxt("../../data/running_coupling/AuAu200/centrality20-30/dps/RAA_dp%d" %i_dp)
-    data_4 = np.loadtxt("../../data/running_coupling/PbPb2760/centrality30-40/dps/RAA_dp%d" %i_dp)
+    data_1 = np.loadtxt("../../data/running_coupling/new_param/AuAu200/centrality0-10/RAA_dp%d" %i_dp)
+    data_3 = np.loadtxt("../../data/running_coupling/new_param/PbPb2760/centrality0-5/RAA_dp%d" %i_dp)
+    data_2 = np.loadtxt("../../data/running_coupling/new_param/AuAu200/centrality20-30/RAA_dp%d" %i_dp)
+    data_4 = np.loadtxt("../../data/running_coupling/new_param/PbPb2760/centrality30-40/RAA_dp%d" %i_dp)
     i_output_1 = data_1.T[1]
     i_output_2 = data_2.T[1]
     i_output_3 = data_3.T[1]

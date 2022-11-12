@@ -7,7 +7,7 @@ Tstar = []
 Q0 = []
 ghard = []
 
-dps_list = [_ for _ in range(32, 60)]
+dps_list = [_ for _ in range(40)]
 # dps_list.append(21)
 # dps_list.append(72)
 # dps_list.append(73)
@@ -38,4 +38,4 @@ with open("design_points_main_AuAu-200.dat") as file:
 
 lhd_sampling = np.concatenate((np.array([beta_1]).T, np.array([beta_2]).T, np.array([Tstar]).T, np.array([Q0]).T, np.array([ghard]).T), axis=1)
 
-np.savetxt('lhd_sampling_5d_new.txt', lhd_sampling)
+np.savetxt('lhd_sampling_5d_new_param.txt', lhd_sampling)
