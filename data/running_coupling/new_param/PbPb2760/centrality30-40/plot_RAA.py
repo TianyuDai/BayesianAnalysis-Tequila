@@ -31,7 +31,7 @@ data_RAA_xerr = (data_RAA.T[2] - data_RAA.T[0]) / 2
 plt.figure()
 
 
-dp_list = range(40)
+dp_list = range(20, 30)
 
 for dp in dp_list:
  
@@ -45,8 +45,8 @@ for dp in dp_list:
     RAA_err = RAA_val * np.sqrt((AA_err/AA_val)**2+(pp_err/pp_val)**2)
 
     # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, alpha=0.5, color='cornflowerblue')
-    plt.fill_between(AA_x, RAA_val-RAA_err, RAA_val+RAA_err, alpha=0.2, color='cornflowerblue')
-    # plt.errorbar(pp_x, RAA_val, yerr=RAA_err, label='dp%d'%dp)
+    # plt.fill_between(AA_x, RAA_val-RAA_err, RAA_val+RAA_err, alpha=0.2, color='cornflowerblue')
+    plt.errorbar(pp_x, RAA_val, yerr=RAA_err, label='dp%d'%dp)
 
 
 
@@ -91,8 +91,8 @@ RAA_true_err = RAA_true_val * np.sqrt((AA_true_err/AA_true_val)**2+(pp_err/pp_va
 plt.xlabel('$p_T$ (GeV/c)')
 plt.ylabel('$R_{AA}$')
 plt.legend()
-plt.ylim(0, 1.)
+plt.ylim(0, 1.8)
 plt.xlim(10, 120)
 plt.title('Tequile, Pb+Pb 2760GeV, 30-40% centrality, $(\Pi^+ + \Pi^-)/2$')
 # plt.title('$T^* > 0.35$')
-plt.savefig('Tequila_30-40central_RAA_pion_dps.pdf')
+plt.savefig('Tequila_30-40central_RAA_pion_dp20-29.pdf')
