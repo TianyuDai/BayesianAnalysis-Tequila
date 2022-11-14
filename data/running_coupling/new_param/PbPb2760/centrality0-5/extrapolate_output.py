@@ -26,7 +26,7 @@ np.savetxt('RAA_data', output)
 # data = np.array([data_RAA_x[5:], data_RAA_val[5:], data_RAA_err[5:]]).T
 
 
-n_dp = [i for i in range(40)]
+n_dp = [i for i in range(60)]
 
 plt.figure()
 
