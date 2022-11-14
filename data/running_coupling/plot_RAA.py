@@ -8,7 +8,7 @@ from scipy import interpolate
 
 # pp = np.loadtxt("pp200_hadrons_cross_section_pT.txt")
 
-dp_list = range(40)
+dp_list = range(60)
 
 fig, axes = plt.subplots(2, 2, figsize=(8,8))
 fig.subplots_adjust(hspace=0, wspace=0)
@@ -106,7 +106,7 @@ for i, ax, data_name, label in zip(range(4), axes.flat, data_list, label_list):
         RAA2_val = AA2_val / pp_val
         RAA2_err = RAA2_val * np.sqrt((AA2_err/AA2_val)**2+(pp_err/pp_val)**2)
 
-        ax.fill_between(AA2_x, RAA2_val-RAA2_err, RAA2_val+RAA2_err, alpha=0.2, color='mediumseagreen')
+        # ax.fill_between(AA2_x, RAA2_val-RAA2_err, RAA2_val+RAA2_err, alpha=0.2, color='mediumseagreen')
 
     ax.errorbar(data_RAA_x, data_RAA_val, xerr=data_RAA_xerr, yerr=data_RAA_err, fmt='.', label=label, color='red')
     ax.set_ylim(0, 1.5)
